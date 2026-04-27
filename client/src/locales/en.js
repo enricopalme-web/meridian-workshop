@@ -6,6 +6,8 @@ export default {
     orders: 'Orders',
     finance: 'Finance',
     demandForecast: 'Demand Forecast',
+    reports: 'Reports',
+    restocking: 'Restocking',
     companyName: 'Catalyst Components',
     subtitle: 'Inventory Management System'
   },
@@ -185,6 +187,70 @@ export default {
       change: 'Change',
       trend: 'Trend',
       period: 'Period'
+    }
+  },
+
+  // Restocking
+  restocking: {
+    title: 'Restocking Recommendations',
+    description: 'Data-driven purchase order recommendations based on stock levels and demand forecasts',
+    budgetLabel: 'Budget Ceiling',
+    budgetPlaceholder: 'Enter budget ceiling (e.g. 50000)',
+    applyBudget: 'Apply',
+    clearBudget: 'Clear',
+    allWarehouses: 'All Warehouses',
+    noRecommendations: 'No restocking needed — all SKUs have sufficient stock for forecasted demand.',
+    budgetExhausted: 'Budget ceiling reached. {hidden} lower-priority items not shown.',
+    table: {
+      sku: 'SKU',
+      name: 'Item',
+      warehouse: 'Warehouse',
+      onHand: 'On Hand',
+      forecasted: 'Forecasted Demand',
+      recommendedQty: 'Recommended Qty',
+      unitCost: 'Unit Cost',
+      estimatedCost: 'Estimated Cost',
+      criticality: 'Criticality',
+      trend: 'Trend'
+    },
+    summary: {
+      itemsRecommended: 'Items Recommended',
+      totalEstimatedCost: 'Total Estimated Cost',
+      budgetRemaining: 'Budget Remaining',
+      criticalItems: 'Critical Items (>75%)'
+    }
+  },
+
+  // Reports
+  reports: {
+    title: 'Performance Reports',
+    description: 'View quarterly performance metrics and monthly trends',
+    loading: 'Loading reports...',
+    loadError: 'Failed to load reports',
+    quarterly: {
+      title: 'Quarterly Performance',
+      quarter: 'Quarter',
+      totalOrders: 'Total Orders',
+      totalRevenue: 'Total Revenue',
+      avgOrderValue: 'Avg Order Value',
+      fulfillmentRate: 'Fulfillment Rate'
+    },
+    monthlyTrend: {
+      title: 'Monthly Revenue Trend'
+    },
+    monthOverMonth: {
+      title: 'Month-over-Month Analysis',
+      month: 'Month',
+      orders: 'Orders',
+      revenue: 'Revenue',
+      change: 'Change',
+      growthRate: 'Growth Rate'
+    },
+    stats: {
+      totalRevenueYTD: 'Total Revenue (YTD)',
+      avgMonthlyRevenue: 'Avg Monthly Revenue',
+      totalOrdersYTD: 'Total Orders (YTD)',
+      bestQuarter: 'Best Performing Quarter'
     }
   },
 

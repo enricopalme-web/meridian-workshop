@@ -6,6 +6,8 @@ export default {
     orders: '注文',
     finance: '財務',
     demandForecast: '需要予測',
+    reports: 'レポート',
+    restocking: '在庫補充',
     companyName: '触媒コンポーネンツ',
     subtitle: '在庫管理システム'
   },
@@ -185,6 +187,70 @@ export default {
       change: '変化',
       trend: 'トレンド',
       period: '期間'
+    }
+  },
+
+  // Restocking
+  restocking: {
+    title: '在庫補充推奨',
+    description: '在庫レベルと需要予測に基づくデータドリブンな発注推奨',
+    budgetLabel: '予算上限',
+    budgetPlaceholder: '予算上限を入力（例：50000）',
+    applyBudget: '適用',
+    clearBudget: 'クリア',
+    allWarehouses: 'すべての倉庫',
+    noRecommendations: '補充不要 — すべてのSKUに十分な在庫があります。',
+    budgetExhausted: '予算上限に達しました。{hidden}件の低優先度アイテムは表示されていません。',
+    table: {
+      sku: 'SKU',
+      name: 'アイテム',
+      warehouse: '倉庫',
+      onHand: '在庫数',
+      forecasted: '予測需要',
+      recommendedQty: '推奨数量',
+      unitCost: '単価',
+      estimatedCost: '推定費用',
+      criticality: '重要度',
+      trend: 'トレンド'
+    },
+    summary: {
+      itemsRecommended: '推奨アイテム数',
+      totalEstimatedCost: '推定総費用',
+      budgetRemaining: '残予算',
+      criticalItems: '重要アイテム（>75%）'
+    }
+  },
+
+  // Reports
+  reports: {
+    title: 'パフォーマンスレポート',
+    description: '四半期パフォーマンス指標と月次トレンドを表示',
+    loading: 'レポートを読み込み中...',
+    loadError: 'レポートの読み込みに失敗しました',
+    quarterly: {
+      title: '四半期パフォーマンス',
+      quarter: '四半期',
+      totalOrders: '総注文数',
+      totalRevenue: '総収益',
+      avgOrderValue: '平均注文金額',
+      fulfillmentRate: '充足率'
+    },
+    monthlyTrend: {
+      title: '月次収益トレンド'
+    },
+    monthOverMonth: {
+      title: '前月比分析',
+      month: '月',
+      orders: '注文数',
+      revenue: '収益',
+      change: '変化',
+      growthRate: '成長率'
+    },
+    stats: {
+      totalRevenueYTD: '総収益（年初来）',
+      avgMonthlyRevenue: '平均月次収益',
+      totalOrdersYTD: '総注文数（年初来）',
+      bestQuarter: '最高パフォーマンス四半期'
     }
   },
 

@@ -228,12 +228,15 @@ def get_recent_transactions():
     return recent_transactions
 
 @app.get("/api/reports/quarterly")
-def get_quarterly_reports():
+def get_quarterly_reports(warehouse: Optional[str] = None):
     """Get quarterly performance reports"""
-    # Calculate quarterly statistics from orders
+    filtered_orders = orders
+    if warehouse and warehouse != 'all':
+        filtered_orders = [o for o in filtered_orders if o.get('warehouse') == warehouse]
+
     quarters = {}
 
-    for order in orders:
+    for order in filtered_orders:
         order_date = order.get('order_date', '')
         # Determine quarter
         if '2025-01' in order_date or '2025-02' in order_date or '2025-03' in order_date:
@@ -274,11 +277,15 @@ def get_quarterly_reports():
     return result
 
 @app.get("/api/reports/monthly-trends")
-def get_monthly_trends():
+def get_monthly_trends(warehouse: Optional[str] = None):
     """Get month-over-month trends"""
+    filtered_orders = orders
+    if warehouse and warehouse != 'all':
+        filtered_orders = [o for o in filtered_orders if o.get('warehouse') == warehouse]
+
     months = {}
 
-    for order in orders:
+    for order in filtered_orders:
         order_date = order.get('order_date', '')
         if not order_date:
             continue
@@ -299,10 +306,81 @@ def get_monthly_trends():
         if order.get('status') == 'Delivered':
             months[month]['delivered_count'] += 1
 
+
     # Convert to list and sort
     result = list(months.values())
     result.sort(key=lambda x: x['month'])
     return result
+
+@app.get("/api/restocking")
+def get_restocking_recommendations(budget: Optional[float] = None, warehouse: Optional[str] = None):
+    """Recommend purchase orders based on stock gaps, demand forecasts, and budget ceiling."""
+    # Build a lookup of in-flight purchase order quantities by SKU
+    po_by_sku = {}
+    for po in purchase_orders:
+        sku = po.get('sku', '')
+        po_by_sku[sku] = po_by_sku.get(sku, 0) + po.get('quantity', 0)
+
+    # Build inventory lookup: SKU -> list of items (multiple warehouses possible)
+    inv_by_sku = {}
+    for item in inventory_items:
+        sku = item.get('sku', '')
+        if sku not in inv_by_sku:
+            inv_by_sku[sku] = []
+        inv_by_sku[sku].append(item)
+
+    recommendations = []
+    for forecast in demand_forecasts:
+        sku = forecast.get('item_sku', '')
+        forecasted = forecast.get('forecasted_demand', 0)
+
+        # Match inventory items for this SKU, optionally filtered by warehouse
+        inv_items = inv_by_sku.get(sku, [])
+        if warehouse and warehouse != 'all':
+            inv_items = [i for i in inv_items if i.get('warehouse') == warehouse]
+        if not inv_items:
+            continue
+
+        for inv in inv_items:
+            available = inv.get('quantity_on_hand', 0) - po_by_sku.get(sku, 0)
+            gap = forecasted - available
+            if gap <= 0:
+                continue
+
+            unit_cost = inv.get('unit_cost', 0)
+            estimated_cost = round(gap * unit_cost, 2)
+            criticality = round((gap / forecasted) * 100, 1) if forecasted > 0 else 0
+
+            recommendations.append({
+                'sku': sku,
+                'name': inv.get('name', forecast.get('item_name', '')),
+                'category': inv.get('category', ''),
+                'warehouse': inv.get('warehouse', ''),
+                'quantity_on_hand': inv.get('quantity_on_hand', 0),
+                'forecasted_demand': forecasted,
+                'in_flight_pos': po_by_sku.get(sku, 0),
+                'recommended_qty': gap,
+                'unit_cost': unit_cost,
+                'estimated_cost': estimated_cost,
+                'criticality_pct': criticality,
+                'trend': forecast.get('trend', 'stable')
+            })
+
+    # Sort by criticality descending
+    recommendations.sort(key=lambda x: x['criticality_pct'], reverse=True)
+
+    # Apply budget ceiling: include items in rank order until budget is exhausted
+    if budget is not None and budget > 0:
+        filtered = []
+        remaining = budget
+        for rec in recommendations:
+            if rec['estimated_cost'] <= remaining:
+                filtered.append(rec)
+                remaining -= rec['estimated_cost']
+        recommendations = filtered
+
+    return recommendations
+
 
 if __name__ == "__main__":
     import uvicorn

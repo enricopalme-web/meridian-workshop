@@ -54,6 +54,20 @@ export const api = {
     return response.data
   },
 
+  async getQuarterlyReports(filters = {}) {
+    const params = new URLSearchParams()
+    if (filters.warehouse && filters.warehouse !== 'all') params.append('warehouse', filters.warehouse)
+    const response = await axios.get(`${API_BASE_URL}/reports/quarterly?${params.toString()}`)
+    return response.data
+  },
+
+  async getMonthlyTrends(filters = {}) {
+    const params = new URLSearchParams()
+    if (filters.warehouse && filters.warehouse !== 'all') params.append('warehouse', filters.warehouse)
+    const response = await axios.get(`${API_BASE_URL}/reports/monthly-trends?${params.toString()}`)
+    return response.data
+  },
+
   async getSpendingSummary() {
     const response = await axios.get(`${API_BASE_URL}/spending/summary`)
     return response.data
@@ -71,6 +85,14 @@ export const api = {
 
   async getTransactions() {
     const response = await axios.get(`${API_BASE_URL}/spending/transactions`)
+    return response.data
+  },
+
+  async getRestockingRecommendations(filters = {}) {
+    const params = new URLSearchParams()
+    if (filters.budget && filters.budget > 0) params.append('budget', filters.budget)
+    if (filters.warehouse && filters.warehouse !== 'all') params.append('warehouse', filters.warehouse)
+    const response = await axios.get(`${API_BASE_URL}/restocking?${params.toString()}`)
     return response.data
   },
 
