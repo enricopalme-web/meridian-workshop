@@ -220,11 +220,13 @@ export default {
 }
 
 .controls-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
   padding: 1.25rem 1.5rem;
   margin-bottom: 1.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .controls-row {
@@ -243,7 +245,7 @@ export default {
 .control-label {
   font-size: 0.8rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -256,35 +258,37 @@ export default {
 
 .currency-symbol {
   font-size: 1rem;
-  color: #64748b;
+  color: var(--text-muted);
   font-weight: 500;
 }
 
 .budget-input {
   width: 200px;
   padding: 0.5rem 0.75rem;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   font-size: 0.9rem;
-  color: #0f172a;
+  color: var(--text-primary);
+  background: var(--bg-input);
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, background 0.2s ease;
 }
 
 .budget-input:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 .warehouse-select {
   padding: 0.5rem 0.75rem;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   font-size: 0.9rem;
-  color: #0f172a;
-  background: white;
+  color: var(--text-primary);
+  background: var(--bg-input);
   cursor: pointer;
   min-width: 160px;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .btn {
@@ -294,38 +298,41 @@ export default {
   font-weight: 500;
   cursor: pointer;
   border: none;
-  transition: all 0.2s;
+  transition: background 0.18s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .btn-primary {
-  background: #3b82f6;
+  background: var(--primary);
   color: white;
 }
 
 .btn-primary:hover {
-  background: #2563eb;
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.35);
 }
 
 .btn-secondary {
-  background: #f1f5f9;
-  color: #64748b;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-hover);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
 }
 
 .btn-secondary:hover {
-  background: #e2e8f0;
+  background: var(--border-color);
 }
 
 .budget-badge {
   margin-top: 0.75rem;
   display: inline-block;
   padding: 0.25rem 0.75rem;
-  background: #eff6ff;
-  color: #1d4ed8;
+  background: var(--primary-bg);
+  color: var(--primary-text);
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 600;
-  border: 1px solid #bfdbfe;
+  border: 1px solid var(--primary);
+  opacity: 0.8;
 }
 
 /* Stats */
@@ -337,11 +344,13 @@ export default {
 }
 
 .stat-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
   padding: 1.25rem 1.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  border-left: 4px solid #3b82f6;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--primary);
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .stat-card.warning { border-left-color: #f59e0b; }
@@ -350,7 +359,7 @@ export default {
 
 .stat-label {
   font-size: 0.8rem;
-  color: #64748b;
+  color: var(--text-muted);
   margin-bottom: 0.4rem;
   font-weight: 500;
 }
@@ -358,17 +367,19 @@ export default {
 .stat-value {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--text-primary);
   line-height: 1.1;
 }
 
 /* Table */
 .card {
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
   padding: 0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
   overflow: hidden;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .table-container {
@@ -382,19 +393,20 @@ export default {
 }
 
 .restocking-table th {
-  background: #f8fafc;
+  background: var(--bg-table-head);
   padding: 0.75rem 1rem;
   text-align: left;
-  font-weight: 600;
-  color: #64748b;
-  border-bottom: 2px solid #e2e8f0;
+  font-weight: 700;
+  color: var(--text-muted);
+  border-bottom: 2px solid var(--border-color);
   white-space: nowrap;
 }
 
 .restocking-table td {
   padding: 0.75rem 1rem;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--border-color);
   vertical-align: middle;
+  color: var(--text-secondary);
 }
 
 .restocking-table tr:last-child td {
@@ -402,7 +414,7 @@ export default {
 }
 
 .restocking-table tr:hover td {
-  background: #f8fafc;
+  background: var(--bg-table-hover);
 }
 
 .num {
@@ -434,9 +446,9 @@ export default {
   white-space: nowrap;
 }
 
-.criticality-label.critical { color: #dc2626; }
-.criticality-label.medium   { color: #d97706; }
-.criticality-label.low      { color: #16a34a; }
+.criticality-label.critical { color: var(--color-danger); }
+.criticality-label.medium   { color: var(--color-warning); }
+.criticality-label.low      { color: var(--color-success); }
 
 /* Trend badge */
 .trend-badge {
@@ -462,13 +474,18 @@ export default {
   color: #166534;
 }
 
+:global([data-theme="dark"]) .trend-badge.increasing { background: #431407; color: #fdba74; }
+:global([data-theme="dark"]) .trend-badge.stable     { background: #0c2a3d; color: #7dd3fc; }
+:global([data-theme="dark"]) .trend-badge.decreasing { background: #052e16; color: #86efac; }
+
 /* Empty state */
 .empty-state {
   text-align: center;
   padding: 4rem 2rem;
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
 }
 
 .empty-icon {
@@ -478,14 +495,14 @@ export default {
 }
 
 .empty-state p {
-  color: #64748b;
+  color: var(--text-muted);
   font-size: 1rem;
 }
 
 .loading {
   text-align: center;
   padding: 3rem;
-  color: #64748b;
+  color: var(--text-muted);
 }
 
 .error {
@@ -493,5 +510,10 @@ export default {
   color: #991b1b;
   padding: 1rem;
   border-radius: 8px;
+}
+
+:global([data-theme="dark"]) .restocking .error {
+  background: #450a0a;
+  color: #fca5a5;
 }
 </style>

@@ -745,8 +745,8 @@ export default {
 
 .section-title {
   font-size: 1rem;
-  font-weight: 600;
-  color: #475569;
+  font-weight: 700;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 1rem;
@@ -759,10 +759,11 @@ export default {
 }
 
 .kpi-card {
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
   padding: 1rem;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .kpi-header {
@@ -772,29 +773,29 @@ export default {
 .kpi-label {
   font-size: 0.813rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.025em;
 }
 
 .kpi-value {
   font-size: 2rem;
-  font-weight: 700;
-  color: #0f172a;
+  font-weight: 800;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
   letter-spacing: -0.025em;
 }
 
 .kpi-goal {
   font-size: 0.813rem;
-  color: #64748b;
+  color: var(--text-muted);
   margin-bottom: 0.75rem;
 }
 
 .kpi-progress-bar {
   width: 100%;
   height: 6px;
-  background: #f1f5f9;
+  background: var(--bg-hover);
   border-radius: 3px;
   overflow: hidden;
 }
@@ -883,7 +884,7 @@ export default {
 
 .donut-center-label {
   font-size: 12px;
-  fill: #64748b;
+  fill: var(--text-muted);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -891,7 +892,7 @@ export default {
 
 .donut-center-value {
   font-size: 36px;
-  fill: #0f172a;
+  fill: var(--text-primary);
   font-weight: 700;
 }
 
@@ -906,7 +907,7 @@ export default {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.875rem;
-  color: #475569;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
@@ -928,7 +929,7 @@ export default {
 
 .health-metric-label {
   font-size: 0.688rem;
-  color: #64748b;
+  color: var(--text-muted);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -937,7 +938,7 @@ export default {
 .health-metric-value {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--text-primary);
   letter-spacing: -0.025em;
 }
 
@@ -971,14 +972,14 @@ export default {
   min-width: 120px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #475569;
+  color: var(--text-secondary);
   flex-shrink: 0;
 }
 
 .h-bar-container {
   flex: 1;
   height: 32px;
-  background: #f8fafc;
+  background: var(--bg-card-alt);
   border-radius: 6px;
   overflow: hidden;
 }
@@ -1010,8 +1011,8 @@ export default {
   justify-content: space-between;
   padding-right: 1rem;
   font-size: 0.75rem;
-  color: #94a3b8;
-  border-right: 1px solid #e2e8f0;
+  color: var(--text-faint);
+  border-right: 1px solid var(--border-color);
 }
 
 .line-chart-area {
@@ -1052,7 +1053,7 @@ export default {
 }
 
 .line-bar.empty-bar {
-  background: #e2e8f0;
+  background: var(--border-color);
   box-shadow: none;
   min-height: 4px;
 }
@@ -1063,14 +1064,14 @@ export default {
 }
 
 .line-bar.empty-bar:hover {
-  background: #cbd5e1;
+  background: var(--border-strong);
   transform: none;
 }
 
 .line-bar-label {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--text-muted);
   white-space: nowrap;
 }
 
@@ -1109,7 +1110,7 @@ export default {
 }
 
 .clickable-row:hover {
-  background: #eff6ff !important;
+  background: var(--bg-hover-blue) !important;
 }
 
 /* Tasks Card Styles */
